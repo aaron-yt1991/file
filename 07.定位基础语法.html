@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="button"  value='获取位置信息'/>
+	</body>
+</html>
+<script type="text/javascript">
+	document.querySelector('input[value=获取位置信息]').onclick = function(){
+		// 
+		// 参数1:定位成功的回调方法
+		// 参数2:定位失败的回调方法
+		// 参数3:一些定位的选项
+		window.navigator.geolocation.getCurrentPosition(function(position){
+//			console.log(position);
+			console.log('位置获取成功');
+			console.log('经度:'+position.coords.longitude);
+			console.log('纬度:'+position.coords.latitude);
+		})
+	}
+</script>

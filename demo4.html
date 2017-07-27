@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <style>
+        .box{
+            width: 500px;
+            height: 300px;
+            margin: 0 auto;
+            background: black;
+        }
+        video{
+            width: 100%;
+            height: 90%;
+            margin: 0 auto;
+        }
+        .control{
+            display: flex;
+            align-items: center;
+        }
+        .control a{
+            font-size:20px;
+            color:whitesmoke;
+            margin:0 5px;
+        }
+        .play{
+            width: 10px;
+            height: 100%;
+        }
+        .screen{
+            width: 10px;
+            height: 100%;
+        }
+        .progress{
+            flex: 1;
+            margin: 0 5px;
+            height: 20px;
+            background: whitesmoke;
+        }
+        .progress .step{
+            width: 0%;
+            height: 100%;
+            background: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <video src="movie/bglb.mp4"></video>
+        <div class="control">
+            <a href="#" class="play icon-play-circle" id="play"></a>
+            <div class="progress">
+                <div class="step"></div>
+            </div>
+            <a href="#" class="screen icon-fullscreen"></a>
+        </div>
+    </div>
+</body>
+<script>
+    //获取video
+    var video =document.querySelector("video");
+    //暂停 播放切换
+    document.querySelector(".play").onclick=function(){
+        if(this.classList.contains('icon-pause')){
+            video.pause();
+            this.classList.remove('icon-pause')
+        }else{
+            video.play();
+            this.classList.add('icon-pause')
+        }
+    }
+    //progress进度条
+    video.ontimeupdate=function(){
+       //console.log(video.currentTime);//播放及时时间
+       //console.log(video.duration);//视频总时间
+        document.querySelector(".step").style.width=video.currentTime/video.duration*100+"%";
+    }
+    //进度条点击事件
+    document.querySelector(".progress").onclick=function(e){
+        //获取鼠标点击进度条的位置  进度条总宽度
+        //console.log(e.offsetX);
+        //console.log(this.clientWidth);
+        document.querySelector(".step").style.width=e.offsetX/this.clientWidth*100+"%";
+        console.log(video.currentTime);
+        console.log(video.duration);
+        console.log(e.offsetX / this.clientWidth);
+        video.currentTime=video.duration* (e.offsetX/this.clientWidth);
+    }
+    //全屏设置
+    document.querySelector(".screen").onclick=function(){
+        if(video.requestFullScreen){
+            video.requestFullScreen();
+        }else if(video.webkitRequestFullScreen){
+            video.webkitRequestFullScreen();
+        }else if(video.msRequestFullScreen){
+            video.msRequestFullScreen();
+        }else if(video.mozRequestFullScreen){
+            video.mozRequestFullScreen();
+        }
+    }
+</script>
+</html>

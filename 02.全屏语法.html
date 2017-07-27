@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" id="jin" value='进入全屏幕'/>
+		<input type="button" id="tui" value="退出全屏">
+	</body>
+</html>
+<script type="text/javascript">
+	// query方法 支持 CSS3中的选择器
+	document.querySelector('#jin').onclick = function (){
+		// 标准的语法 就是下面这个
+		// ie11 以下 都不支持
+		// 由于兼容性问题 以及 浏览器自带了全屏 实际开发中 使用频率 较低
+		if(document.body.requestFullscreen){
+			document.body.requestFullscreen();
+		}else if(document.body.webkitRequestFullScreen){
+			document.body.webkitRequestFullScreen()
+		}else if(document.body.msRequestFullscreen){
+			document.body.msRequestFullscreen();
+		}else if(document.body.mozRequestFullScreen){
+			document.body.mozRequestFullScreen();
+		}
+	}
+	document.querySelector('#tui').onclick = function (){
+		// 标准的语法 就是下面这个
+		// ie11 以下 都不支持
+		// 由于兼容性问题 以及 浏览器自带了全屏 实际开发中 使用频率 较低
+		if(document.cancelFullscreen){
+			document.cancelFullscreen();
+		}else if(document.webkitCancelFullScreen){
+			document.webkitCancelFullScreen()
+		}else if(document.msCancelFullscreen){
+			document.msCancelFullscreen();
+		}else if(document.mozCancelFullScreen){
+			document.mozCancelFullScreen();
+		}
+	}
+</script>

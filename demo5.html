@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .container > div {
+            height: 100px;
+            width: 100px;
+            margin: 0 10px;
+            border: 1px solid gray;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+
+        .yellowgreen {
+            background-color: yellowgreen;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        input {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+<div class='container'>
+    <div class='red'></div>
+    <div class='orange'></div>
+    <div class='yellowgreen'></div>
+</div>
+<input type="button" value='保存'/>
+<input type="button" value='读取'/>
+<input type="button" value='清除'/>
+</body>
+<script>
+    //获取盒子  点击盒子改变body颜色
+    var boxCols = document.querySelectorAll(".container>div");
+    for(var i=0;i<boxCols.length;i++){
+        boxCols[i].onclick=function(){
+            document.body.style.background=getComputedStyle(this).backgroundColor;
+        }
+    }
+    
+</script>
+</html>

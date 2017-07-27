@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.iconbox{
+				width: 200px;
+				height: 200px;
+				border:1px solid red;
+			}
+			.box{
+				display: flex;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>文件读取</h1>
+		<div class="box">
+			<input type="file" id="btn" multiple />
+			<div class="iconbox"></div>
+		</div>
+	</body>
+	<script>
+		var box = document.querySelector(".iconbox")
+		console.log(window.getComputedStyle(box).width);
+		
+		document.querySelector("input[type=file]").onchange=function(e){
+			var reader=new FileReader();
+			console.log(reader);
+			console.log(this.files);
+			reader.readAsDataURL(this.files[0])
+			reader.onload=function(){
+				//console.log(reader.result);
+				document.querySelector(".iconbox").style.background='url('+reader.result+') no-repeat center/cover'
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        h1, h2 {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        .box1 > img {
+            width: 121px;
+            height: 140px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+        }
+
+        .box2 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .box2 > div {
+            width: 80px;
+            height: 80px;
+            border: 1px solid red;
+            margin: 10px;
+        }
+
+        .box2 > div:nth-child(1) {
+            background: skyblue;
+        }
+
+        .box2 > div:nth-child(2) {
+            background: pink;
+        }
+
+        .box2 > div:nth-child(3) {
+            background: chartreuse;
+        }
+
+        .showBox {
+            width: 100px;
+            height: 100px;
+            border: 5px dashed orange;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<h1>支持拖拽的元素</h1>
+
+<div class="box1">
+    <img src="images/lf.jpg" alt=""/>
+    <img src="images/nm.jpg" alt=""/>
+    <img src="images/sl.jpg" alt=""/>
+</div>
+<h2>需要开启拖拽的元素</h2>
+
+<div class="box2">
+    <div class="" draggable="true"></div>
+    <div class="" draggable="true"></div>
+    <div class="" draggable="true"></div>
+</div>
+<h2>展示框</h2>
+
+<div class="showBox"></div>
+</body>
+<script>
+    var showDemo;
+    var showBox = document.querySelector(".showBox");
+    showBox.ondragover = function (e) {
+        e.preventDefault();
+    }
+    var imgs = document.querySelectorAll("img");
+    for (var i = 0; i < imgs.length; i++) {
+        imgs[i].ondragstart = function () {
+            showDemo = this;
+        }
+    }
+    showBox.ondrop = function () {
+        console.log(showDemo);
+//        this.style.background = 'url(' + showDemo.src + ') no-repeat center/cover'
+        if (showDemo.src) {
+            this.style.background = 'url(' + showDemo.src + ') no-repeat center/cover'
+        }else{
+            this.style.backgroundColor=window.getComputedStyle(showDemo).backgroundColor;
+        }
+    }
+    var boxCol=document.querySelectorAll(".box2>div")
+    for(var i =0;i<boxCol.length;i++){
+        boxCol[i].ondragstart=function(){
+            showDemo=this;
+        }
+    }
+</script>
+</html>

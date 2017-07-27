@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 80px;
+            height: 80px;
+            background: gray;
+        }
+
+        .box > input {
+            width: 80px;
+            height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <input type="button" value="进入全屏" class="btnJ"/>
+    <input type="button" value="退出全屏" class="btnC"/>
+</div>
+<script>
+    document.querySelector(".btnJ").onclick = function () {
+        if (document.body.requestFullScreen) {
+            document.body.requestFullScreen();
+        } else if (document.body.webkitRequestFullScreen) {
+            document.body.webkitRequestFullScreen();
+        }else if(document.body.msRequestFullScreen){
+            document.body.msRequestFullScreen();
+        }else if(document.body.mozRequestFullScreen){
+            document.body.mozRequestFullScreen();
+        }
+    }
+    document.querySelector(".btnC").onclick=function(){
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        }else if(document.msCancelFullScreen){
+            document.msCancelFullScreen();
+        }else if(document.mozCancelFullScreen){
+            document.mozCancelFullScreen();
+        }
+    }
+
+</script>
+</body>
+</html>
